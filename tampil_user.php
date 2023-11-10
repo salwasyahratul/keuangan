@@ -17,6 +17,11 @@
         </tr>
         <?php
         include 'koneksi.php';
+        if ($_SESSION['level'] !== "admin") {
+            // Jika tidak login atau level bukan admin atau staff, redirect ke halaman logout
+            header("location: logout.php");
+            exit();
+        }
         $no = 1;
         $data = mysqli_query($koneksi,"select* from user");
         while ($d = mysqli_fetch_array($data)){
