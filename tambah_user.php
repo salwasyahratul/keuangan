@@ -14,7 +14,9 @@ if (!empty($_POST['save'])){
     $level = $_POST['level'];
     $status = $_POST['status'];
     //menginput data ke database
-    $a=mysqli_query($koneksi,"insert into user values('','$Nama','$Password','$level','$status')");
+
+    $hashpw = md5($Password);
+    $a=mysqli_query($koneksi,"insert into user values('','$Nama','$hashpw','$level','$status')");
     if($a){
         //mengalihkan halaman kembali
         header("location:tambah_user.php");
@@ -45,10 +47,10 @@ if (!empty($_POST['save'])){
             <td>level</td>
             <td><select name="level">
                 <option value="">-----pilih</option>
-                <option value="1">Admin</option>
-                <option value="2">Staff</option>
-                <option value="3">Spv</option>
-                <option value="4">Mgr</option>
+                <option value="admin">Admin</option>
+                <option value="staff">Staff</option>
+                <option value="spv">Spv</option>
+                <option value="mgr">Mgr</option>
 </select>
 </td>
 </tr>

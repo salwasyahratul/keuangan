@@ -6,6 +6,14 @@
 <?php
     //Koneksi database
     include 'koneksi.php';
+
+    session_start();
+
+                if (!isset($_SESSION['level']) || ($_SESSION['level'] !== "admin" && $_SESSION['level'] !== "mgr")) {
+                    // Jika tidak login atau level bukan admin atau staff, redirect ke halaman logout
+                    header("location: logout.php");
+                    exit();
+                }
     //Menangkap data yang dikirim dari form 
     if(!empty($_POST['save'])){
 
